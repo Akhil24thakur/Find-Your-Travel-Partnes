@@ -1,71 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TravelShare</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Buddy Finder - Home</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#" data-section="home">Home</a></li>
-                <li><a href="#" data-section="add-trip">Add Trip</a></li>
-                <li><a href="#" data-section="search-trips">Search Trips</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="home" class="active">
-            <h1>Welcome to TravelShare</h1>
-            <p>Connect with travelers and share rides to your destination!</p>
-            <div class="cta-buttons">
-                <button class="btn" data-section="add-trip">Add Your Trip</button>
-                <button class="btn" data-section="search-trips">Find a Ride</button>
-            </div>
-        </section>
+  <header>
+    <h1>Welcome to Travel Buddy Finder</h1>
+    <p>Find people traveling to the same destination!</p>
+  </header>
 
-        <section id="add-trip">
-            <h1>Add Your Trip</h1>
-            <form id="add-trip-form">
-                <label for="from">From:</label>
-                <input type="text" id="from" name="from" required>
+  <main class="home-page">
+    <div class="options">
+      <a href="register.html" class="button">Register Trip</a>
+      <a href="find.html" class="button">Find Travel Buddy</a>
+    </div>
+  </main>
 
-                <label for="to">To:</label>
-                <input type="text" id="to" name="to" required>
-
-                <label for="date">Date:</label>
-                <input type="date" id="date" name="date" required>
-
-                <label for="time">Time:</label>
-                <input type="time" id="time" name="time" required>
-
-                <label for="seats">Available Seats:</label>
-                <input type="number" id="seats" name="seats" min="1" required>
-
-                <label for="contact">Contact Number:</label>
-                <input type="tel" id="contact" name="contact" required>
-
-                <button type="submit" class="btn">Add Trip</button>
-            </form>
-        </section>
-
-        <section id="search-trips">
-            <h1>Search for Trips</h1>
-            <form id="search-trips-form">
-                <label for="search-destination">Destination:</label>
-                <input type="text" id="search-destination" name="search-destination" required>
-
-                <label for="search-date">Date:</label>
-                <input type="date" id="search-date" name="search-date">
-
-                <button type="submit" class="btn">Search</button>
-            </form>
-            <div id="search-results"></div>
-        </section>
-    </main>
-  
-    <script src="script.js"></script>
 </body>
 </html>
