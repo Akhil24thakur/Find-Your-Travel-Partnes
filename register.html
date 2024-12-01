@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register Trip</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <a href="index.html">Home</a>
+    <a href="find.html" class="find-buddy-link">Find Buddy</a>
+    <div class="container">
+        <a href="find.html" class="find-buddy-link">Find Buddy</a>
+      </div>
+
+    <h1>Register Your Trip</h1>
+  </header>
+
+  <main>
+    <section id="register">
+      <form id="registerForm">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <input type="number" id="age" placeholder="Age" required>
+        <select id="gender" required>
+          <option value="" disabled selected>Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+        <input type="text" id="currentLocation" placeholder="Current Location" required>
+        <input type="text" id="destination" placeholder="Destination" required>
+        <button type="submit">Register</button>
+      </form>
+    </section>
+  </main>
+
+  
+
+  <script src="script.js"></script>
+</body>
+</html>
