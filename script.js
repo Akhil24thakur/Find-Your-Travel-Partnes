@@ -1,81 +1,51 @@
-// Store trips in local storage
-let trips = JSON.parse(localStorage.getItem('trips')) || [];
+// Simulate a database
+const database = [];
 
-// Navigation
-document.querySelectorAll('nav a, .cta-buttons .btn').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetSection = this.getAttribute('data-section');
-        showSection(targetSection);
-    });
-});
+// Register Form Submission
+if (document.getElementById("registerForm")) {
+  document.getElementById("registerForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function showSection(sectionId) {
-    document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
-    });
-    document.getElementById(sectionId).classList.add('active');
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const age = document.getElementById("age").value;
+    const gender = document.getElementById("gender").value;
+    const currentLocation = document.getElementById("currentLocation").value;
+    const destination = document.getElementById("destination").value;
+
+    database.push({ name, phone, age, gender, currentLocation, destination });
+    this.reset();
+    alert("Tour registered successfully!");
+  });
 }
 
-// Add trip form submission
-const addTripForm = document.getElementById('add-trip-form');
-if (addTripForm) {
-    addTripForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const newTrip = {
-            from: document.getElementById('from').value,
-            to: document.getElementById('to').value,
-            date: document.getElementById('date').value,
-            time: document.getElementById('time').value,
-            seats: document.getElementById('seats').value,
-            contact: document.getElementById('contact').value
-        };
-        trips.push(newTrip);
-        localStorage.setItem('trips', JSON.stringify(trips));
-        alert('Trip added successfully!');
-        addTripForm.reset();
-        showSection('home');
-    });
-}
+// Find Form Submission
+if (document.getElementById("findForm")) {
+  document.getElementById("findForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-// Search trips form submission
-const searchTripsForm = document.getElementById('search-trips-form');
-const searchResults = document.getElementById('search-results');
-if (searchTripsForm && searchResults) {
-    searchTripsForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const destination = document.getElementById('search-destination').value.toLowerCase();
-        const date = document.getElementById('search-date').value;
-        
-        const filteredTrips = trips.filter(trip => 
-            trip.to.toLowerCase().includes(destination) &&
-            (!date || trip.date === date)
-        );
+    const searchDestination = document.getElementById("searchDestination").value;
+    const resultsDiv = document.getElementById("results");
+    resultsDiv.innerHTML = "";
 
-        displaySearchResults(filteredTrips);
-    });
-}
+    const matches = database.filter(user => user.destination.toLowerCase() === searchDestination.toLowerCase());
 
-// Display search results
-function displaySearchResults(filteredTrips) {
-    searchResults.innerHTML = '';
-    if (filteredTrips.length === 0) {
-        searchResults.innerHTML = '<p>No trips found.</p>';
+    if (matches.length > 0) {
+      matches.forEach(user => {
+        const resultItem = document.createElement("div");
+        resultItem.classList.add("result-item");
+        resultItem.innerHTML = `
+          <p><strong>Name:</strong> ${user.name}</p>
+          <p><strong>Phone:</strong> ${user.phone}</p>
+          <p><strong>Age:</strong> ${user.age}</p>
+          <p><strong>Gender:</strong> ${user.gender}</p>
+          <p><strong>Current Location:</strong> ${user.currentLocation}</p>
+          <p><strong>Destination:</strong> ${user.destination}</p>
+        `;
+        resultsDiv.appendChild(resultItem);
+      });
     } else {
-        filteredTrips.forEach(trip => {
-            const tripCard = document.createElement('div');
-            tripCard.classList.add('trip-card');
-            tripCard.innerHTML = `
-                <h3>${trip.from} to ${trip.to}</h3>
-                <p>Date: ${trip.date}</p>
-                <p>Time: ${trip.time}</p>
-                <p>Available Seats: ${trip.seats}</p>
-                <p>Contact: ${trip.contact}</p>
-            `;
-            searchResults.appendChild(tripCard);
-        });
+      resultsDiv.innerHTML = "<p>No matches found!</p>";
     }
+  });
 }
-
-// Initialize the page
-showSection('home');
