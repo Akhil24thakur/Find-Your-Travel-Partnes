@@ -29,7 +29,6 @@ if (document.getElementById("findForm")) {
     resultsDiv.innerHTML = "";
 
     const matches = database.filter(user => user.destination.toLowerCase() === searchDestination.toLowerCase());
-
     if (matches.length > 0) {
       matches.forEach(user => {
         const resultItem = document.createElement("div");
